@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+
+{% block body %}
+{% include "header.html" %}
+
+
+<!-- <section id="downloader" class="py-5">
+    <div class="container pt-5">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-lg-7 d-inline">
+                <form action="" method="post">
+                    {% csrf_token %}
+                   <div class="row align-items-center">
+                    <div class="col-9">
+                        <input type="text" name="link" id="link" class="form-control rounded-pill float-left" placeholder="Provide here youtube link">
+                        
+                    </div>
+                    <div class="col-3">
+                        <button type="submit" class="btn btn-primary rounded-pill px-3">Download <i class="fa-solid fa-download"></i></button>
+                    </div>
+                   </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section> -->
+
+<div class="mt-5">
+    <center><h1>Enter YouTube URL</h1></center>
+</div>
+
+<div class="container mt-5">
+    <center>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <form action="download/" method="GET">
+                    <div class="row justify-content-center">
+                        <div class="col-10">
+                            <div class="form-group">
+                                <input name="url" type="text" class="form-control rounded-pill"  placeholder="Enter YouTube URL">
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <input type="submit" class="btn btn-primary rounded-pill" value="Download">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </center>
+</div>
+{% endblock body %}
