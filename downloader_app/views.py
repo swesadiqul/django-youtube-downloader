@@ -9,15 +9,25 @@ def index(request):
 
 def download(request):
 	global url
-	url = request.GET.get('url')
+	url = request.POST.get('url')
 	yt = YouTube(url)
-	video = []
-	video = yt.streams.filter(progressive=True).all()
+	# print(yt)
+	# print(yt.title)
+	# print(yt.thumbnail_url)
+	# print(yt.streams)
+	# print(yt.streams.filter(progressive=True))
+	# print(yt.streams.filter(adaptive=True))
+	# print(yt.streams.filter(only_audio=True))
+	# print(yt.streams.filter(only_video=True))
+	# video = []
+	# video = yt.streams.filter(progressive=True)
+	source = yt.streams.filter(adaptive=True)
+
 	em_link = url.replace("watch?v=", "embed/")
 	Title = yt.title
 
 	context = {
-		'video': video,
+		'source': source,
 		'embed': em_link,
 		'title': Title,
 	}

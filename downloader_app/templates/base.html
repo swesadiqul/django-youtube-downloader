@@ -14,14 +14,20 @@
 </head>
 <body>
 
+    <header>
+        {% include "include/header.html" %}
+    </header>
 
-    {% block body %}
+    {% block content %}
       
-    {% endblock body %}
+    {% endblock %}
 
 
     <!-- JavaScripts File Add -->
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'js/fontawesome.min.js' %}"></script>
+    {% block js %}
+      
+    {% endblock %}
 </body>
 </html>
