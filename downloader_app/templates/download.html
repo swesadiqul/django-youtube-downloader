@@ -3,40 +3,29 @@
 
 {% block content %}
 <div class="container py-5">
-   <div class="row justify-content-center align-items-center">
+   <div class="row justify-content-center">
     <div class="col-6">
-        <h3>Title: {{ title }}</h3>
-        <div class="ratio ratio-16x9">
-            <!-- <iframe class="embed-responsive-item" src={{embed}} allowfullscreen></iframe> -->
-            <iframe width="560" height="315" src="{{ embed }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
+      <div class="ratio ratio-16x9">
+        <iframe src="{{ embed }}" title="{{ title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <p class="mt-2">{{ title }}</p>
     </div>
     <div class="col-6">
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Size</th>
-                <th scope="col">Quality</th>
-                <th scope="col">Type</th>
-                <th scope="col">Download</th>
-              </tr>
-            </thead>
-            {% for j in source %}
-            <tbody>
-              <tr>
-                <td>{{ j.filesize|filesizeformat }}</td>
-                <td>{{ j.resolution }}</td>
-                <td>{{ j.type }}</td>
-                <td>
-                    <form action="{% url 'ytproject:download_done' j.resolution %}" method="post">
-                        {% csrf_token %}
-                        <input type="submit" class="btn btn-success" value="Download">
-                    </form>
-                </td>
-              </tr>
-            </tbody>
-            {% endfor %}
-          </table>
+      <h6>MP4 Format:</h6>
+      {% for x in source %}
+        {% if x.mime_type == 'video' %}
+        <h6>MP4 (Video Only):</h6>
+          <a href="#" class="btn btn-outline-primary rounded-pill px-4 me-2">{{ x.resolution }}<i class="fa-solid fa-download ms-2"></i></a>
+        {% elif x.mime_type == 'audio' %}
+        <h6>Audio:</h6>
+          <a href="#" class="btn btn-outline-primary rounded-pill px-4 me-2">{{ x.abr }}<i class="fa-solid fa-download ms-2"></i></a>
+        {% else %}
+        <h6>WebM (Video Only):</h6>
+        <a href="#" class="btn btn-outline-primary rounded-pill px-4 me-2">{{ x.resolution }}<i class="fa-solid fa-download ms-2"></i></a>
+        <!-- <h6>3GP</h6>
+        <a href="#" class="btn btn-outline-primary rounded-pill px-4 me-2">{{ x.abr }}<i class="fa-solid fa-download ms-2"></i></a> -->
+        {% endif %}
+      {% endfor %}
     </div>
    </div>
 </div>

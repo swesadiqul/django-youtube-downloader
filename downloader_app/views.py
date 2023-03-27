@@ -22,7 +22,13 @@ def download(request):
 	# video = []
 	# video = yt.streams.filter(progressive=True)
 	source = yt.streams.filter(adaptive=True)
-
+	mime = []
+	for x in source:
+    		print(x)
+    		# for y in x:
+    		# 		mime.append(y.mime_type)
+	print(mime)
+    		
 	em_link = url.replace("watch?v=", "embed/")
 	Title = yt.title
 
